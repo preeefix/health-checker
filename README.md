@@ -40,6 +40,8 @@ Example
 docker run -v config.yaml:/config/config.yaml ghcr.io/preeefix/health-checker
 ```
 
+> If you're having an issue with no output, you may need to initialize a tty using `-t`: `docker run -t -v...`
+
 ### Kubernetes
 
 A sample kubernetes manifest is available as `kube.yaml`.

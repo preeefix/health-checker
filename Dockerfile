@@ -7,4 +7,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY health-checker.py .
 
-ENTRYPOINT ["python", "health-checker.py", "/config/config.yaml"]
+ENTRYPOINT ["python", "health-checker.py"]
+CMD [ "/config/config.yaml" ]
