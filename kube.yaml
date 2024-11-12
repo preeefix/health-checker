@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: health-checker-config
+data:
+  endpoints.yaml: |
+    - headers:
+        user-agent: synthetic-monitor
+      method: GET
+      name: fetch index page
+      url: https://example.com/
+    - headers:
+        user-agent: synthetic-monitor
+      method: GET
+      name: fetch a base endpoint page
+      url: https://example.com/endpoint
+    - body: '{"foo":"bar"}'
+      headers:
+        content-type: application/json
+        user-agent: synthetic-monitor
+      method: POST
+      name: fetch some fake post endpoint
+      url: https://example.com/some/post/endpoint
+    - name: another index page
+      url: https://www.contoso.com/
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: health-checker
+  labels:
+    app: health-checker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: health-checker
+  template:
+    metadata:
+      labels:
+        app: health-checker
+    spec:
+      containers:
+      - name: health-checker
+        image: ghcr.io/preeefix/health-checker:latest
+        imagePullPolicy: Always
+        args:
+        - "/config/config.yaml"
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+        volumeMounts:
+        - name: config-volume
+          mountPath: /config
+      volumes:
+      - name: config-volume
+        configMap:
+          name: health-checker-config

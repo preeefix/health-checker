@@ -1,0 +1,19 @@
+- headers:
+    user-agent: synthetic-monitor
+  method: GET
+  name: fetch index page
+  url: https://example.com/
+- headers:
+    user-agent: synthetic-monitor
+  method: GET
+  name: fetch a base endpoint page
+  url: https://example.com/endpoint
+- body: '{"foo":"bar"}'
+  headers:
+    content-type: application/json
+    user-agent: synthetic-monitor
+  method: POST
+  name: fetch some fake post endpoint
+  url: https://example.com/some/post/endpoint
+- name: another index page
+  url: https://www.contoso.com/
