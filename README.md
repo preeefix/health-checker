@@ -8,20 +8,20 @@ There are several different ways depending on how involved you wish to get: Loca
 
 ### `local file`
 
-Requirements: Python 3
-Assmptions: A Linux-like environment
+- Requirements: Python 3
+- Assmptions: A Linux-like environment
 
 1. Clone the git repository to your local machine
-  - `git clone https://github.com/preeefix/health-checker && cd health-checker`
+   - `git clone https://github.com/preeefix/health-checker && cd health-checker`
 2. Create a virtual environment to contain the dependencies and activate it.
-  - `python3 -m venv venv`
-  - `source venv/bin/activate`
+   - `python3 -m venv venv`
+   - `source venv/bin/activate`
 3. Install the required dependencies
-  - `python3 -m pip install -r requirements.txt`
+   - `python3 -m pip install -r requirements.txt`
 4. Copy the test configuration and modify as you please
-  - `cp test.config.yaml config.yaml`
+   - `cp test.config.yaml config.yaml`
 5. Execute and enjoy!
-  - `python3 health-checker.py`
+   - `python3 health-checker.py`
 
 ### Compiled
 
